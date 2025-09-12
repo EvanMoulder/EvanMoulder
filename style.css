@@ -1,116 +1,21 @@
-/* ===========================
-   THEME VARIABLES (easy tweaks)
-   =========================== */
-:root {
-  --purple-1: #6d28d9; /* Deep purple hue for gradients */
-  --purple-2: #8b5cf6; /* Mid violet for gradient blending */
-  --purple-3: #a78bfa; /* Light violet for highlight tones */
-  --glass-bg: rgba(255, 255, 255, 0.08); /* Transparent white for glass surfaces */
-  --glass-border: rgba(255, 255, 255, 0.25); /* Subtle border to define glass edges */
-  --text: #f8f7ff; /* Near-white text for good contrast on purple */
-}
-
-/* Apply consistent box-sizing so padding/borders don’t expand layout unpredictably */
-*,
-*::before,
-*::after {
-  box-sizing: border-box; /* Include padding and border in element’s total width/height */
-}
-
-/* Allow full-height backgrounds even if content is short */
-html, body {
-  height: 100%; /* Stretch to full viewport height */
-}
-
-/* ================
-   GLOBAL PAGE STYLE
-   ================ */
+/* Basic styling */
 body {
-  margin: 0; /* Remove default browser margin around the page */
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif; /* Clean, native-like font stack */
-  color: var(--text); /* Set default text color */
-
-  /* Base animated gradient background (3 color stops) */
-  background: linear-gradient(120deg, var(--purple-1), var(--purple-2), var(--purple-3)); /* Multi-stop gradient */
-  background-size: 200% 200%; /* Enlarge so we can pan the gradient smoothly */
-  animation: bgMove 16s ease-in-out infinite; /* Slowly pan the gradient forever */
-
-  /* Optional: add ultra-subtle speckle/texture via a tiny radial pattern on top of the gradient */
-  background-image:
-    radial-gradient(transparent 0, transparent 2px, rgba(255,255,255,0.02) 3px), /* Sparse dots layer */
-    linear-gradient(120deg, var(--purple-1), var(--purple-2), var(--purple-3)); /* Primary gradient layer */
-  background-blend-mode: screen, normal; /* Blend the dot layer with the gradient for a soft sheen */
+  font-family: Arial, sans-serif;
+  background: #eee;
+  text-align: center;
+  padding: 50px;
 }
 
-/* Animate the gradient’s background-position to create gentle movement */
-@keyframes bgMove {
-  0%   { background-position: 0% 50%; }   /* Start at left-middle */
-  50%  { background-position: 100% 50%; } /* Drift to right-middle */
-  100% { background-position: 0% 50%; }   /* Return to start for seamless loop */
+button {
+  padding: 10px 20px;
+  border: none;
+  background: #333;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s;
 }
 
-/* ==================
-   LAYOUT CONTAINERS
-   ================== */
-.container {
-  width: min(920px, 92vw); /* Cap max width but allow smaller screens to shrink */
-  margin: 0 auto; /* Center the container horizontally */
-  padding: 64px 0; /* Vertical breathing room above and below content */
+button:hover {
+  transform: scale(1.2);
 }
-
-/* ============
-   TYPOGRAPHY
-   ============ */
-h1 {
-  margin: 0 0 8px 0; /* Remove default top margin; small space below title */
-  font-weight: 800; /* Extra bold for strong hero heading */
-  letter-spacing: 0.4px; /* Slight spacing for crisp look */
-  line-height: 1.1; /* Tight lines for large headline */
-  font-size: clamp(2rem, 5vw, 3.25rem); /* Responsive font size from mobile to desktop */
-  text-shadow: 0 6px 24px rgba(0, 0, 0, 0.35); /* Soft glow/shadow for depth on bright backgrounds */
-}
-
-.subtitle {
-  opacity: 0.9; /* Slightly dimmer than pure white for balance */
-  margin: 0 0 24px 0; /* Space below subtitle before the button */
-}
-
-/* ===================
-   GLASSMORPHISM CARD
-   =================== */
-.card {
-  background: var(--glass-bg); /* Semi-transparent panel */
-  border: 1px solid var(--glass-border); /* Subtle border for definition */
-  border-radius: 18px; /* Smooth rounded corners */
-  padding: 24px; /* Inner spacing for readable content */
-  backdrop-filter: blur(10px); /* Frosted glass effect (may need GPU acceleration) */
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.25),  /* Outer shadow for lift */
-    inset 0 1px 0 rgba(255,255,255,0.12); /* Inner highlight for glass sheen */
-  margin: 18px 0; /* Space between stacked cards */
-}
-
-/* ======================
-   INTERACTIVE CTA BUTTON
-   ====================== */
-.btn {
-  border: 1px solid var(--glass-border); /* Subtle border echoing card style */
-  background: rgba(255,255,255,0.12); /* Translucent background */
-  color: var(--text); /* High-contrast text */
-  padding: 12px 18px; /* Comfortable click target */
-  border-radius: 12px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor to show it’s clickable */
-  font-weight: 600; /* Slightly bold text */
-  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease; /* Smooth hover feedback */
-  animation: pulse 2.8s ease-in-out infinite; /* Gentle breathing glow */
-}
-
-.btn:hover {
-  transform: translateY(-2px) scale(1.02); /* Lift and tiny scale on hover */
-  background: rgba(255,255,255,0.18); /* A hair brighter on hover */
-  box-shadow: 0 10px 24px rgba(0,0,0,0.25); /* Deeper shadow when hovered */
-}
-
-/* Keyframes for the soft glowing pulse of the button */
-@keyframes pulse {
-  0%, 100% { box-shadow: 0 0 0 rgba(255,255,255,0.0); } /* No glow at start/end *
