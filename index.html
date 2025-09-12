@@ -1,21 +1,43 @@
-<!DOCTYPE html> <!-- Declares this is an HTML5 document -->
-<html lang="en"> <!-- Opens the HTML document, with English language specified -->
-<head>
-  <meta charset="UTF-8"> <!-- Ensures proper character encoding (so special symbols work) -->
-  <title>My Blog Experiment</title> <!-- Title shown in the browser tab -->
-  <link rel="stylesheet" href="style.css"> <!-- Connects to your CSS file for styling -->
-</head>
-<body> <!-- Everything inside <body> is what shows up on the page -->
+<!DOCTYPE html> <!-- Declare HTML5 so the browser uses modern parsing rules -->
+<html lang="en"> <!-- Set the document language to English for accessibility and SEO -->
+<head> <!-- Head contains metadata, styles, and the page title -->
+  <meta charset="UTF-8" /> <!-- Use UTF-8 so special characters (like emojis) display correctly -->
+  <title>Evan’s Purple Playground</title> <!-- Text shown in the browser tab and search results -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" /> <!-- Make layout adapt to mobile screens -->
+  <link rel="stylesheet" href="style.css" /> <!-- Link to the external CSS file with all styles -->
+</head> <!-- End of the document head -->
 
-  <header> <!-- Top section of the page -->
-    <h1>Welcome to Evan’s Blog</h1> <!-- Main heading of the site -->
-  </header>
+<body> <!-- Everything visible on the page lives inside the body -->
 
-  <main> <!-- Main content area -->
-    <p>Hello world! Time to experiment 😎</p> <!-- Example text paragraph -->
-    <button id="coolButton">Click me</button> <!-- Button with an ID so JS can find it -->
-  </main>
+  <!-- Decorative background blobs (pure CSS shapes; positioned and animated in style.css) -->
+  <div class="blob blob-1"></div> <!-- First blob in top-left area -->
+  <div class="blob blob-2"></div> <!-- Second blob in bottom-right area -->
 
-  <script src="script.js"></script> <!-- Loads your JavaScript file -->
-</body>
-</html>
+  <!-- Header / hero section at the top of the page -->
+  <header class="container reveal"> <!-- 'container' centers content; 'reveal' enables scroll-in animation -->
+    <h1 id="title" class="typewriter"></h1> <!-- JS types text into this H1; 'typewriter' adds blinking caret -->
+    <p class="subtitle">Purple vibes • JS experiments • chill animations</p> <!-- Short subtitle tagline -->
+    <button id="cta" class="btn">Try the Button</button> <!-- Call-to-action button with animation effects -->
+  </header> <!-- End header -->
+
+  <!-- Main page content below the hero -->
+  <main class="container"> <!-- Reuse 'container' to keep content width comfortable -->
+    <section class="card reveal"> <!-- 'card' adds glass effect; 'reveal' fades/slides it in on scroll -->
+      <h2>Section One</h2> <!-- Section heading -->
+      <p>Drop your content here. This card fades in as you scroll.</p> <!-- Body copy -->
+    </section> <!-- End first section -->
+
+    <section class="card reveal"> <!-- Second card that will also reveal on scroll -->
+      <h2>Section Two</h2> <!-- Section heading -->
+      <p>Add posts, projects, or whatever you want to show off.</p> <!-- Body copy -->
+    </section> <!-- End second section -->
+
+    <section class="card reveal"> <!-- Third reveal-on-scroll card -->
+      <h2>Section Three</h2> <!-- Section heading -->
+      <p>Animations are lightweight and friendly to static hosting.</p> <!-- Body copy -->
+    </section> <!-- End third section -->
+  </main> <!-- End main area -->
+
+  <script src="script.js"></script> <!-- Load JS at the end so HTML is parsed before scripts run -->
+</body> <!-- End of body -->
+</html> <!-- End of HTML document -->
