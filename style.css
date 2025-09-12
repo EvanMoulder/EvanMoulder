@@ -1,0 +1,24 @@
+/* Style applied to the whole page */
+body {
+  font-family: Arial, sans-serif; /* Sets the font */
+  background: linear-gradient(to right, #4facfe, #00f2fe); /* Gradient background */
+  color: white; /* Default text color */
+  text-align: center; /* Centers text */
+  padding: 50px; /* Adds space inside the page edges */
+}
+
+/* Style for the button element */
+button {
+  padding: 10px 20px; /* Inner spacing: top/bottom 10px, left/right 20px */
+  border: none; /* Removes default border */
+  background: #fff; /* White background */
+  color: #333; /* Dark text color */
+  border-radius: 8px; /* Rounds the corners */
+  cursor: pointer; /* Shows pointer hand when hovering */
+  transition: transform 0.2s; /* Smooth animation for scaling */
+}
+
+/* Button changes when hovered */
+button:hover {
+  transform: scale(1.2); /* Enlarges button slightly */
+}
