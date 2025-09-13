@@ -1,21 +1,171 @@
-/* Basic styling */
+/* ---- Base: purple animated gradient background ---- */
+:root {
+  --purple-1: #6d28d9; /* deep purple */
+  --purple-2: #8b5cf6; /* violet */
+  --purple-3: #a78bfa; /* soft violet */
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.25);
+  --text: #f8f7ff;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  background: #eee;
-  text-align: center;
-  padding: 50px;
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+  color: var(--text);
+
+  /* Animated multi-stop gradient that slowly moves */
+  background: linear-gradient(120deg, var(--purple-1), var(--purple-2), var(--purple-3));
+  background-size: 200% 200%;
+  animation: bgMove 16s ease-in-out infinite;
+
+  /* Subtle starry grain via repeating radial gradient */
+  background-image:
+    radial-gradient(transparent 0, transparent 2px, rgba(255,255,255,0.02) 3px),
+    linear-gradient(120deg, var(--purple-1), var(--purple-2), var(--purple-3));
+  background-blend-mode: screen, normal;
 }
 
-button {
-  padding: 10px 20px;
-  border: none;
-  background: #333;
-  color: white;
-  border-radius: 8px;
+/* Slow pan to give life to the gradient */
+@keyframes bgMove {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ---- Layout containers ---- */
+.container {
+  width: min(920px, 92vw);
+  margin: 0 auto;
+  padding: 64px 0;
+}
+
+/* ---- Header text styles ---- */
+h1 {
+  margin: 0 0 8px 0;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  line-height: 1.1;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  text-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+}
+
+.subtitle {
+  opacity: 0.9;
+  margin: 0 0 24px 0;
+}
+
+/* ---- Glassmorphism card ---- */
+.card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 18px;
+  padding: 24px;
+  backdrop-filter: blur(10px);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255,255,255,0.12);
+  margin: 18px 0;
+}
+
+/* ---- Button with subtle pulse + hover lift ---- */
+.btn {
+  appearance: none;
+  border: 1px solid var(--glass-border);
+  background: rgba(255,255,255,0.12);
+  color: var(--text);
+  padding: 12px 18px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: transform 0.2s;
+  backdrop-filter: blur(8px);
+  font-weight: 600;
+  transform: translateZ(0); /* enable GPU compositing */
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+  animation: pulse 2.8s ease-in-out infinite;
 }
 
-button:hover {
-  transform: scale(1.2);
+.btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  background: rgba(255,255,255,0.18);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 rgba(255,255,255,0.0); }
+  50%      { box-shadow: 0 0 24px rgba(255,255,255,0.18); }
+}
+
+/* ---- Floating blobs (decor only) ---- */
+.blob {
+  position: fixed;
+  inset: auto auto;
+  width: 38vmin;
+  height: 38vmin;
+  border-radius: 50%;
+  filter: blur(30px) saturate(120%);
+  opacity: 0.5;
+  z-index: -1; /* stay behind content */
+}
+
+.blob-1 {
+  top: 6%;
+  left: -4%;
+  background: radial-gradient(circle at 30% 30%, #c084fc, #7c3aed);
+  animation: drift1 24s ease-in-out infinite;
+}
+
+.blob-2 {
+  bottom: -6%;
+  right: -6%;
+  background: radial-gradient(circle at 70% 70%, #a78bfa, #6d28d9);
+  animation: drift2 28s ease-in-out infinite;
+}
+
+@keyframes drift1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(6vw, 2vh) scale(1.1); }
+}
+
+@keyframes drift2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(-5vw, -4vh) scale(1.08); }
+}
+
+/* ---- Scroll reveal (start hidden, fade/slide in) ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 600ms ease, transform 600ms ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---- Typewriter caret (pure CSS, text is injected by JS) ---- */
+.typewriter {
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.typewriter::after {
+  content: "▌";
+  margin-left: 6px;
+  animation: blink 0.9s steps(1) infinite;
+  opacity: 0.9;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
 }

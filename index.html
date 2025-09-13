@@ -1,15 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>My Simple Site</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Evan’s Purple Playground</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Link your styles -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Welcome to Evan’s Page</h1>
-  <p>This is the starting point.</p>
-  <button id="coolButton">Click me</button>
+  <!-- Decorative floating blobs (pure CSS shapes) -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
 
+  <header class="container reveal">
+    <h1 id="title" class="typewriter" aria-label="Welcome to Evan’s Site">
+      <!-- The JS will type this text into the h1 -->
+    </h1>
+    <p class="subtitle">Purple vibes • JS experiments • chill animations</p>
+    <button id="cta" class="btn">Try the Button</button>
+  </header>
+
+  <main class="container">
+    <section class="card reveal">
+      <h2>Section One</h2>
+      <p>Drop your content here. This card fades in as you scroll.</p>
+    </section>
+
+    <section class="card reveal">
+      <h2>Section Two</h2>
+      <p>Add posts, projects, or whatever you want to show off.</p>
+    </section>
+
+    <section class="card reveal">
+      <h2>Section Three</h2>
+      <p>Animations are lightweight and friendly to static hosting.</p>
+    </section>
+  </main>
+
+  <!-- Your scripts -->
   <script src="script.js"></script>
 </body>
 </html>
